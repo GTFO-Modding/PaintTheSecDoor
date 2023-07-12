@@ -27,12 +27,14 @@ internal static class ConfigManager
             return;
 
         _ConfigPath = Path.Combine(MTFOPathInfo.CustomPath, "SecDoorStyles.json");
+        Logger.Info($" Json Path: {_ConfigPath}");
         
         if (File.Exists(_ConfigPath))
         {
             var listener = LiveEdit.CreateListener(MTFOPathInfo.CustomPath, "SecDoorStyles.json", false);
             listener.FileChanged += Listener_FileChanged;
             Load(File.ReadAllText(_ConfigPath));
+            Logger.Info($" Loaded! ");
         }
     }
 
@@ -41,6 +43,7 @@ internal static class ConfigManager
         LiveEdit.TryReadFileContent(_ConfigPath, (json) =>
         {
             Load(json);
+            Logger.Info(" Reloaded! ");
         });
     }
 
@@ -93,7 +96,7 @@ internal static class ConfigManager
             goto FALLBACK;
         }
 
-        if (_StyleLookup.TryGetValue(info.StyleName, out style))
+        if (!_StyleLookup.TryGetValue(info.StyleName, out style))
         {
             goto FALLBACK;
         }
