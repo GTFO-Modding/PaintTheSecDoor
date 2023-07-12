@@ -15,50 +15,7 @@ internal class Patch_SecurityDoor
 {
     static void Postfix(LG_SecurityDoor __instance)
     {
-        if (!ConfigManager.TryGetStyle(__instance, out var style))
-        {
-            return;
-        }
-
-        var gateType = __instance.Gate.Type;
-        var type = DoorType.Get(__instance);
-        if (type == SecDoorTypes.Security_Small || type == SecDoorTypes.Security_Medium)
-        {
-            if (!style.Security.Enabled)
-                return;
-
-            var texture = new SecurityDoorTexture(gateType, false);
-            texture.SetColor(style.Security.Main, style.Security.Strip);
-            texture.ReplaceMaterialsInChild(__instance.transform);
-        }
-        else if (type == SecDoorTypes.InternalBulkhead_Small || type == SecDoorTypes.InternalBulkhead_Medium)
-        {
-            if (!style.InternalBulkhead.Enabled)
-                return;
-
-            var texture = new SecurityDoorTexture(gateType, true);
-            texture.SetColor(style.InternalBulkhead.Main, style.InternalBulkhead.Strip);
-            texture.ReplaceMaterialsInChild(__instance.transform);
-        }
-        else if (type == SecDoorTypes.Bulkhead_Small || type == SecDoorTypes.Bulkhead_Medium)
-        {
-            if (!style.Bulkhead.Enabled)
-                return;
-
-            var texture = new BulkheadDoorTexture(gateType);
-            texture.SetColor(style.Bulkhead.Main, style.Bulkhead.Strip1, style.Bulkhead.Strip2);
-            texture.ReplaceMaterialsInChild(__instance.transform);
-        }
-        else if (type == SecDoorTypes.Apex_Small || type == SecDoorTypes.Apex_Medium)
-        {
-            if (!style.Apex.Enabled)
-                return;
-
-            var texture = new ApexDoorTexture(gateType);
-            texture.SetColor(style.Apex.Main, style.Apex.Strip);
-            texture.SetLightEmission(style.Apex.Emission, style.Apex.EmissionIntensity);
-            texture.ReplaceMaterialsInChild(__instance.transform);
-        }
+        ConfigManager.TryApplyToDoor(__instance);
     }
 
     static Color GetLayerThemeColor(LG_SecurityDoor door)
