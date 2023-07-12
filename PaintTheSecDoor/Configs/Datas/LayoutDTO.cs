@@ -10,7 +10,7 @@ internal sealed class LayoutDTO
 
     public bool TryGetDoorInfo(eLocalZoneIndex localIndex, out DoorInfoDTO info)
     {
-        info = SecDoors.First(x => x.LocalIndex == localIndex);
+        info = SecDoors.FirstOrDefault(x => x.LocalIndex == localIndex);
         return info != null;
     }
 }
