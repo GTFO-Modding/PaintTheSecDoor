@@ -1,12 +1,7 @@
 ﻿using BepInEx.Unity.IL2CPP;
 using MTFO.API;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace PaintTheSecDoor.Configs;
+namespace PaintTheSecDoor.Utils.InteropHelpers;
 internal static class MTFOPathInfo
 {
     public static bool HasMTFO

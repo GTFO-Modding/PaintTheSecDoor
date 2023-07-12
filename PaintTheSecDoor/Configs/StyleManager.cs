@@ -3,6 +3,8 @@ using GTFO.API.JSON;
 using GTFO.API.Utilities;
 using LevelGeneration;
 using PaintTheSecDoor.API;
+using PaintTheSecDoor.Configs.Datas;
+using PaintTheSecDoor.Utils.InteropHelpers;
 using System.Collections.Generic;
 using System.IO;
 
@@ -10,7 +12,7 @@ namespace PaintTheSecDoor.Configs;
 
 using LayoutDB = LevelLayoutDataBlock;
 
-internal static class ConfigManager
+internal static class StyleManager
 {
 
     private static readonly Dictionary<string, LayoutDTO> _LayoutLookup = new();
@@ -29,7 +31,7 @@ internal static class ConfigManager
 
         _ConfigPath = Path.Combine(MTFOPathInfo.CustomPath, "SecDoorStyles.json");
         Logger.Info($" Json Path: {_ConfigPath}");
-        
+
         if (File.Exists(_ConfigPath))
         {
             var listener = LiveEdit.CreateListener(MTFOPathInfo.CustomPath, "SecDoorStyles.json", false);
@@ -171,7 +173,7 @@ internal static class ConfigManager
 
         return true;
 
-        FALLBACK:
+    FALLBACK:
         style = _GlobalStyle;
         return style != null;
     }
@@ -199,7 +201,7 @@ internal static class ConfigManager
                 {
                     if (dimData.DimensionIndex == dimensionIndex)
                     {
-                        return LayoutDB.GetBlock(dimData.DimensionData)?.name ?? string.Empty; 
+                        return LayoutDB.GetBlock(dimData.DimensionData)?.name ?? string.Empty;
                     }
                 }
                 return string.Empty;

@@ -1,12 +1,8 @@
 ﻿using GameData;
-using LevelGeneration;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace PaintTheSecDoor.Configs;
+namespace PaintTheSecDoor.Configs.Datas;
 internal sealed class LayoutDTO
 {
     public string LayoutBlockName { get; set; }

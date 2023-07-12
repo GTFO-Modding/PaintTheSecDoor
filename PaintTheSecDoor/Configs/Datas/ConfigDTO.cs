@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace PaintTheSecDoor.Configs;
+namespace PaintTheSecDoor.Configs.Datas;
 internal class ConfigDTO
 {
     public StyleDTO[] Styles { get; set; } = Array.Empty<StyleDTO>();
