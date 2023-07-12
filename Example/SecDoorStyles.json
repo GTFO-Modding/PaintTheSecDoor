@@ -1,0 +1,56 @@
+{
+  "Styles": [
+    {
+      "StyleName": "Global",
+      "Security": {
+        "Main": "#4a6c94",
+        "Strip": "#ce5142"
+      },
+      "Apex": {
+        "Main": "#703d0b",
+        "Strip": "#000000",
+        "Emission": "#fe310d",
+        "EmissionIntensity": 1.25
+      },
+      "Bulkhead": {
+        "Main": "#705736",
+        "Strip1": "#ffffff",
+        "Strip2": "#000000"
+      },
+      "InternalBulkhead": {
+        "Main": "#919091",
+        "Strip": "#ffffff"
+      }
+    },
+    {
+      "StyleName": "Bulkhead_Extreme",
+      "Security": {
+        "Enabled": false
+      },
+      "Apex": {
+        "Enabled": false
+      },
+      "Bulkhead": {
+        "Main": "#705736",
+        "Strip1": "#ffa14f",
+        "Strip2": "#000000"
+      },
+      "InternalBulkhead": {
+        "Main": "#919091",
+        "Strip": "#ffa14f"
+      }
+    }
+  ],
+  "GlobalStyle": "Global",
+  "Layouts": [
+    {
+      "LayoutBlockName": "A1_L2",
+      "SecDoors": [
+        {
+          "LocalIndex": 0,
+          "StyleName": "Bulkhead_Extreme"
+        }
+      ]
+    }
+  ]
+}
