@@ -146,7 +146,7 @@ internal sealed class ApexDoorDTO
 
         Texture_8x4 = new ApexDoorTexture(LG_GateType.Medium);
         Texture_8x4.SetColor(Main, Strip);
-        Texture_4x4.SetLightEmission(Emission, EmissionIntensity);
+        Texture_8x4.SetLightEmission(Emission, EmissionIntensity);
     }
 
     public void DeallocateTexture()
