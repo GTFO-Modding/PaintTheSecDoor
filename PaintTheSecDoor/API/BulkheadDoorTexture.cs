@@ -6,7 +6,7 @@ using UnityEngine;
 namespace PaintTheSecDoor.API;
 public sealed class BulkheadDoorTexture : IMaterialReplacer
 {
-    private PaintableMaskedTexture _Texture;
+    private PaintableChannelMaskedTexture _Texture;
     private readonly string _ReplaceMaterialName;
 
     private Material _BakedMat;
@@ -14,24 +14,18 @@ public sealed class BulkheadDoorTexture : IMaterialReplacer
     public BulkheadDoorTexture(LG_GateType gateType)
     {
         Texture2D baseTex;
-        Texture2D mainTex;
-        Texture2D strip1Tex;
-        Texture2D strip2Tex;
+        Texture2D maskTex;
         switch (gateType)
         {
             case LG_GateType.Small:
                 baseTex = Assets.BaseTex_Bulk_4x4;
-                mainTex = Assets.PaintTex_Bulk_4x4;
-                strip1Tex = Assets.Strip1Tex_Bulk_4x4;
-                strip2Tex = Assets.Strip2Tex_Bulk_4x4;
+                maskTex = Assets.MaskTex_Bulk_4x4;
                 _ReplaceMaterialName = "BulkheadDoor";
                 break;
 
             case LG_GateType.Medium:
                 baseTex = Assets.BaseTex_Bulk_8x4;
-                mainTex = Assets.PaintTex_Bulk_8x4;
-                strip1Tex = Assets.Strip1Tex_Bulk_8x4;
-                strip2Tex = Assets.Strip2Tex_Bulk_8x4;
+                maskTex = Assets.MaskTex_Bulk_8x4;
                 _ReplaceMaterialName = "BulkheadDoor_8x4";
                 break;
 
@@ -39,8 +33,8 @@ public sealed class BulkheadDoorTexture : IMaterialReplacer
                 throw new NotImplementedException($"GateType: {gateType} is not supported!");
         }
 
-        _Texture = new PaintableMaskedTexture(baseTex);
-        _Texture.SetMaskTexture(mainTex, strip1Tex, strip2Tex);
+        _Texture = new PaintableChannelMaskedTexture(baseTex);
+        _Texture.SetMaskTexture(maskTex);
     }
 
     public void SetColor(Color main, Color strip1, Color strip2)

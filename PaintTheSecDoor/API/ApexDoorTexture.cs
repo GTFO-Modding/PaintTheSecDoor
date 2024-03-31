@@ -6,7 +6,7 @@ using UnityEngine;
 namespace PaintTheSecDoor.API;
 public sealed class ApexDoorTexture : IMaterialReplacer
 {
-    private PaintableMaskedTexture _Texture;
+    private PaintableChannelMaskedTexture _Texture;
     private readonly string _ReplaceMaterialName;
 
     private Material _BakedMat, _BakedLightMat;
@@ -15,21 +15,18 @@ public sealed class ApexDoorTexture : IMaterialReplacer
     public ApexDoorTexture(LG_GateType gateType)
     {
         Texture2D baseTex;
-        Texture2D mainTex;
-        Texture2D stripTex;
+        Texture2D maskTex;
         switch (gateType)
         {
             case LG_GateType.Small:
                 baseTex = Assets.BaseTex_Apex_4x4;
-                mainTex = Assets.MainTex_Apex_4x4;
-                stripTex = Assets.StripTex_Apex_4x4;
+                maskTex = Assets.MaskTex_Apex_4x4;
                 _ReplaceMaterialName = "apexDoor_4x4";
                 break;
 
             case LG_GateType.Medium:
                 baseTex = Assets.BaseTex_Apex_8x4;
-                mainTex = Assets.MainTex_Apex_8x4;
-                stripTex = Assets.StripTex_Apex_8x4;
+                maskTex = Assets.MaskTex_Apex_8x4;
                 _ReplaceMaterialName = "apexDoor_8x4";
                 break;
 
@@ -37,8 +34,8 @@ public sealed class ApexDoorTexture : IMaterialReplacer
                 throw new NotImplementedException($"GateType: {gateType} is not supported!");
         }
 
-        _Texture = new PaintableMaskedTexture(baseTex);
-        _Texture.SetMaskTexture(mainTex, stripTex);
+        _Texture = new PaintableChannelMaskedTexture(baseTex);
+        _Texture.SetMaskTexture(maskTex);
     }
 
     public void SetColor(Color main, Color strip)
